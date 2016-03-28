@@ -24,19 +24,19 @@ status.ignore={
 	"channels":[]
 	};
 	try {
-		status.ignore=require(config.blocklist);
+	  status.ignore=require(config.blocklist);
 	} catch(err) {
     jsonfile.readFile(config.blocklist, function(err, obj) {
       status.ignore=obj;
     })
 	}
-	function Exists(obj,varr) {
-	for (var key in obj) {
-		if (obj[key].indexOf(varr) > -1) {
-			return true
-		}
-	}
-	return false
+  function Exists(obj,varr) {
+    for (var key in obj) {
+      if (obj[key].indexOf(varr) > -1) {
+        return true
+      }
+    }
+  return false
 }
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
@@ -70,9 +70,9 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
   var args = InputTag.join(" ");
   //start defining commands here
   if(!Exists(status.ignore['channel'],e.message.channel.id)){
-		function exists(arr, v) {
-			return status.ignore[arr].indexOf(v) > -1;
-	};
+    function exists(arr, v) {
+       return status.ignore[arr].indexOf(v) > -1;
+    };
     if(exists("channels",e.message.channel.id)==false){
       //commands start here
       if (msg[0] == "f" || msg[0] == "F"){
@@ -94,12 +94,12 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
       }
       if(msg[0] == config.prefix + "eval" && e.message.author.id === config.bot_owner){
         try{
-					e.message.channel.sendMessage("```javascript\n" + eval(args) + "```")
+          e.message.channel.sendMessage("```javascript\n" + eval(args) + "```")
           return
-				}catch(err){
-					e.message.channel.sendMessage(":thumbsdown: `" + err + "`");
+	}catch(err){
+          e.message.channel.sendMessage(":thumbsdown: `" + err + "`");
           return
-				}
+	}
       }
       if(e.message.content.indexOf("<@162377752312283147>") >= 0){
         e.message.channel.sendMessage(":eyes:")
