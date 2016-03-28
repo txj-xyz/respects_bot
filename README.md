@@ -6,7 +6,7 @@ Created by: TXJ
 
 Required: **NodeJS 5.9+**
 
-`npm install fs` & `npm install discordie`
+`npm install discordie`
 
 Configure the `config.json` file with the fields according to your info, EX:
 
