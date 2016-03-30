@@ -143,7 +143,6 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
         e.message.channel.sendMessage(":eyes:")
         return
       }
-      //commands end here
     }
   }
 });
