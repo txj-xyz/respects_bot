@@ -40,8 +40,6 @@ status.ignore={
 }
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
-  //console.log(e.message.author.username + " | " + e.message.content)
-  //invite system
   if(e.message.author.id == config.botid && e.message.isPrivate) return
     if(e.message.isPrivate && e.message.content.indexOf("discord.gg") >= 0){
       var code = /https?:\/\/discord\.gg\/([A-Za-z0-9-]+)\/?/.exec(e.message.content)[1];
@@ -57,7 +55,6 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
         e.message.channel.sendMessage(":thumbsdown:")
       });
     }
-  //end invite system
 
   var msg = e.message.content.split(" ");
   var InputTag = [];
@@ -68,13 +65,11 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
     InputTag.push(t);
   }
   var args = InputTag.join(" ");
-  //start defining commands here
   if(!Exists(status.ignore['channel'],e.message.channel.id)){
     function exists(arr, v) {
        return status.ignore[arr].indexOf(v) > -1;
     };
     if(exists("channels",e.message.channel.id)==false){
-      //commands start here
       if (e.message.content == "f" || e.message.content == "F"){
         respectsPaid++
         e.message.channel.sendMessage(e.message.author.username + " has paid their respects. :eyes:\nRespects paid so far: **" + respectsPaid + "**");
@@ -134,10 +129,10 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
         try{
           e.message.channel.sendMessage("```javascript\n" + eval(args) + "```")
           return
-}catch(err){
-          e.message.channel.sendMessage(":thumbsdown: `" + err + "`");
-          return
-  }
+		  }catch(err){
+				  e.message.channel.sendMessage(":thumbsdown: `" + err + "`");
+				  return
+		    }
       }
       if(e.message.content.indexOf("<@162377752312283147>") >= 0){
         e.message.channel.sendMessage(":eyes:")
