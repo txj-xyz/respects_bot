@@ -1,4 +1,4 @@
-var respectsPaid = 0;
+var respectsPaid = require("./databases/respectsPaid.json")
 var status = [];
 var config = require("./config.json");
 var auth = {
@@ -71,8 +71,9 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
     };
     if(exists("channels",e.message.channel.id)==false){
       if (e.message.content == "f" || e.message.content == "F"){
-        respectsPaid++
-        e.message.channel.sendMessage(e.message.author.username + " has paid their respects. :eyes:\nRespects paid so far: **" + respectsPaid + "**");
+        respectsPaid.respectsPaid++
+		require('fs').writeFileSync("./databases/respectsPaid.json", '{\n	"respectsPaid": "' + respectsPaid.respectsPaid + '"\n}')
+        e.message.channel.sendMessage(e.message.author.username + " has paid their respects. :eyes:\nRespects paid so far: **" + respectsPaid.respectsPaid + "**");
         return
       }
       if(msg[0] == config.prefix + "help" || msg[0] == config.prefix + "cmd"){
