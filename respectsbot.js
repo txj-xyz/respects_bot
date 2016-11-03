@@ -142,3 +142,5 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
     }
   }
 });
+
+// eat shit flavored hot dogs
